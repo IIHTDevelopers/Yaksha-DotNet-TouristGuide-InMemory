@@ -42,12 +42,8 @@ namespace TouristGuide
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            //services.AddPaging();
-            //To Use InMemory Db
-            //services.AddDbContext<TouristguideDbContext>(options => options.UseInMemoryDatabase(databaseName: "InmemeoryAppConn"));
-            services.AddDbContext<TouristguideDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("InmemeoryAppConn")));
-            //Injecting Services and Repository
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddDbContext<TouristguideDbContext>(options => options.UseInMemoryDatabase(databaseName: "InmemeoryAppConn"));
             services.AddScoped<ITourguideRepository, TourguideRepository>();
             services.AddScoped<ITourguideServices, TourguideServices>();
         }
@@ -69,11 +65,8 @@ namespace TouristGuide
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

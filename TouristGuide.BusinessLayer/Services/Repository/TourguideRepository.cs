@@ -26,8 +26,8 @@ namespace TouristGuide.BusinessLayer.Services.Repository
         /// <returns>List of Destination</returns>
         public IList<Destination> DestinationList()
         {
-            var list = _tgDbContext.Destinations.ToList();
-            return list;
+            //do code here
+            throw new NotImplementedException();
         }
         /// <summary>
         /// Get Place by Destination id as well all placce on Index page of Tourist controller
@@ -36,18 +36,8 @@ namespace TouristGuide.BusinessLayer.Services.Repository
         /// <returns></returns>
         public async Task<IEnumerable<Place>> GetAllPlaces(int? Id)
         {
-            if (Id == null)
-            {
-                var place = await _tgDbContext.Places.
-                OrderByDescending(x => x.Name).ToListAsync();
-                return place;
-            }
-            else
-            {
-                var place = await _tgDbContext.Places.Where(x => x.DestinationId == Id).
-                OrderByDescending(x => x.Name).ToListAsync();
-                return place;
-            }
+            //do code here
+            throw new NotImplementedException();
         }
         /// <summary>
         /// Get place details on clicking Continue reading link on place view
@@ -56,10 +46,8 @@ namespace TouristGuide.BusinessLayer.Services.Repository
         /// <returns></returns>
         public async Task<Place> GetPlaceById(int placeId)
         {
-            var result = await _tgDbContext.Places
-                                 .Where(x => x.PlaceId == placeId)
-                                 .FirstOrDefaultAsync();
-            return result;
+            //do code here
+            throw new NotImplementedException();
         }
         /// <summary>
         /// Hire a tour guide for better assistant while traveling
@@ -68,9 +56,8 @@ namespace TouristGuide.BusinessLayer.Services.Repository
         /// <returns></returns>
         public async Task<TourGuide> HireTourGuide(TourGuide tourGuide)
         {
-            _tgDbContext.TourGuides.Add(tourGuide);
-            await _tgDbContext.SaveChangesAsync();
-            return tourGuide;
+            //do code here
+            throw new NotImplementedException();
         }
         /// <summary>
         /// Some quick information about india for visitor from InMemory Db
@@ -78,8 +65,8 @@ namespace TouristGuide.BusinessLayer.Services.Repository
         /// <returns></returns>
         public async Task<IEnumerable<AboutIndia>> KnowAboutIndia()
         {
-            var result = await _tgDbContext.AboutIndias.ToListAsync();
-            return result;
+            //do code here
+            throw new NotImplementedException();
         }
         /// <summary>
         /// Place by Attraction tho show on while search in Db Collection
@@ -88,9 +75,8 @@ namespace TouristGuide.BusinessLayer.Services.Repository
         /// <returns></returns>
         public async Task<IEnumerable<Place>> PlaceByAttraction(string name)
         {
-            var result = await _tgDbContext.Places.
-                Where(x => x.Attraction == name || x.Name == name).Take(10).ToListAsync();
-            return result;
+            //do code here
+            throw new NotImplementedException();
         }
         /// <summary>
         /// Show your some quick information and Tour Guide Booking Id
@@ -99,10 +85,8 @@ namespace TouristGuide.BusinessLayer.Services.Repository
         /// <returns></returns>
         public async Task<IEnumerable<TourGuide>> TourGuideInformation(int tourId)
         {
-            var result = await _tgDbContext.TourGuides
-                                 .Where(x => x.TourId == tourId)
-                                 .ToListAsync();
-            return result;
+            //do code here
+            throw new NotImplementedException();
         }
     }
 }
